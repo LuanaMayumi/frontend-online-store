@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import { getProductById } from '../services/api';
+import '../styles/ProductDetails.sass';
+import Form from '../components/Form';
 
 class ProductDetails extends Component {
   state = {
@@ -78,109 +80,66 @@ class ProductDetails extends Component {
     return (
       <div
         data-testid="product"
+        className="page-product-details"
       >
-        <Header />
-        <h1>Detalhes do produto</h1>
-        <p
-          data-testid="product-detail-name"
-        >
-          {infoProduct.title}
-        </p>
-        <p
-          data-testid="product-detail-price"
-        >
-          { infoProduct.price }
-        </p>
-        <p>
-          { infoProduct.condition }
-        </p>
-        <img
-          data-testid="product-detail-image"
-          src={ infoProduct.thumbnail }
-          alt={ infoProduct.title }
+        <Header
+          handleChange={ this.handleChange }
+          onClickButton={ this.onClickButton }
         />
-        <button
-          type="button"
-          data-testid="product-detail-add-to-cart"
-          onClick={ () => this.addProductToCart(infoProduct) }
-          id={ infoProduct.id }
-        >
-          Eu quero
-        </button>
-        {/* <Header data-testid="shopping-cart-button" /> */}
-        <div
-          className="form-container"
-        >
-          <h1>Avaliações</h1>
-          <form>
-            <label
-              htmlFor="email"
-            >
-              <input
-                name="emailUser"
-                id="email"
-                data-testid="product-detail-email"
-                onChange={ this.handleChange }
-              />
-              E-mail
-            </label>
-            <input
-              type="radio"
-              data-testid="1-rating"
-              name="rate"
-              value="1"
-              onChange={ this.handleChange }
-            />
-            <input
-              type="radio"
-              data-testid="2-rating"
-              name="rate"
-              value="2"
-              onChange={ this.handleChange }
-            />
-            <input
-              type="radio"
-              data-testid="3-rating"
-              name="rate"
-              value="3"
-              onChange={ this.handleChange }
-            />
-            <input
-              type="radio"
-              data-testid="4-rating"
-              name="rate"
-              value="4"
-              onChange={ this.handleChange }
-            />
-            <input
-              type="radio"
-              data-testid="5-rating"
-              name="rate"
-              value="5"
-              onChange={ this.handleChange }
-            />
-            <textarea
-              data-testid="product-detail-evaluation"
-              placeholder="Escreva algo sobre o produto"
-              name="description"
-              onChange={ this.handleChange }
-            />
-            <button
-              type="button"
-              data-testid="submit-review-btn"
-              onClick={ this.onClickButton }
-            >
-              {' '}
-              Avaliar
-            </button>
-            { message && <p data-testid="error-msg"> Campos inválidos </p>}
-          </form>
+        <div>
+          {/* <div className="product-image"> */}
+          {
+            infoProduct.length !== 0 && (
+              <div className="container-image-product">
+                <p
+                  data-testid="product-detail-name"
+                >
+                  {infoProduct.title}
+                </p>
+                <img
+                  data-testid="product-detail-image"
+                  src={ infoProduct.pictures[0].url }
+                  alt={ infoProduct.title }
+                />
+                {/* </div> */}
+                {/* <div className="product-details"> */}
+                <p
+                  data-testid="product-detail-price"
+                  className="card-product-price"
+                >
+                  <span className="cifrao">R$</span>
+                  { infoProduct.price.toFixed(2).replace('.', ',') }
+                </p>
+                {/* <p>
+                  Condição do Produto:
+                  <br />
+                  { infoProduct.condition }
+                </p> */}
+                <button
+                  type="button"
+                  data-testid="product-detail-add-to-cart"
+                  onClick={ () => this.addProductToCart(infoProduct) }
+                  id={ infoProduct.id }
+                >
+                  Adicionar ao Carrinho
+                </button>
+              </div>
+            )
+          }
         </div>
+        {/* </div> */}
+        {/* <Header data-testid="shopping-cart-button" /> */}
+        <Form
+          message={ message }
+          onClickButton={ this.onClickButton }
+          handleChange={ this.handleChange }
+        />
       </div>
     );
   }
 }
 export default ProductDetails;
+
 ProductDetails.propTypes = {
   match: PropTypes.string,
 }.isRequired;
