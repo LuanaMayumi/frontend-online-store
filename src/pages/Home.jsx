@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../styles/App.sass';
 import { Link } from 'react-router-dom';
 import AnyProduct from '../components/AnyProduct';
 import Header from '../components/Header';
@@ -178,7 +179,7 @@ class Home extends Component {
                     onClick={ () => this.addProductShoppingCart(product) }
                     id={ product.id }
                   >
-                    Eu quero
+                    Adicionar ao Carrinho
                   </button>
                 </div>
               ))}
