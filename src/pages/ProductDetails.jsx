@@ -79,6 +79,7 @@ class ProductDetails extends Component {
       <div
         data-testid="product"
       >
+        <Header />
         <h1>Detalhes do produto</h1>
         <p
           data-testid="product-detail-name"
@@ -106,7 +107,7 @@ class ProductDetails extends Component {
         >
           Eu quero
         </button>
-        <Header data-testid="shopping-cart-button" />
+        {/* <Header data-testid="shopping-cart-button" /> */}
         <div
           className="form-container"
         >

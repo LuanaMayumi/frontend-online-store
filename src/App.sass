@@ -1,42 +1,144 @@
-.App {
-  text-align: center;
-}
+* 
+  list-style: none
+  text-decoration: none
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+body
+  background-color: #eeeeee
 
-@media ( prefers-reduced-motion : no-preference ) {
+a, a:visited
+  color: inherit
 
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.container-header
+  display: flex
+  height: 100px
+  justify-content: space-between
+  margin-bottom: 30px
+  align-items: center
+  background-color: #000000
+  padding: 0 30px
 
-}
+  img
+    width: 40px
+  
+  .logo
+    width: 200px
 
-.App-header {
-  align-items: center;
-  background-color: #282c34;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  font-size: calc(10px + 2vmin);
-  justify-content: center;
-  min-height: 100vh;
-}
+  .search-container
+    display: flex
+    gap: 5px
 
-.App-link {
-  color: #61dafb;
-}
+    input
+      border-radius: 5px
+      border: none
+      width: 200px
+      height: 30px
+      padding: 5px 10px
 
-@keyframes App-logo-spin {
 
-  from {
-    transform: rotate(0deg);
-  }
+    button
+      border-radius: 5px
+      border: none
+      padding: 10px
+      background-color: #31C28D
+      font-size: 14px
 
-  to {
-    transform: rotate(360deg);
-  }
-}
+      &:hover
+        background-color: #71eec0
+        transition: 0.3s
+
+.container-main
+  display: flex
+  gap: 20px
+
+.container-products
+  display: flex
+  flex-wrap: wrap
+  gap: 15px
+
+  .card-product
+    width: 300px
+    height: 400px
+    padding: 30px
+    border-radius: 5px
+    background-color: #fff
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: space-between
+    border: none
+
+    &:hover
+      width: 320px
+      height: 420px
+      transition: 0.2s
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15)
+
+    .card-product-price
+      font-size: 26px
+      font-weight: bold
+
+      .cifrao
+        font-size: 16px
+        margin-right: 6px
+        color: #a09f9f
+
+    .card-product-name
+      margin: 10px
+      font-weight: bold
+      font-size: 16px
+      text-align: center
+      margin-bottom: 10px
+      // color: #8f4abd
+
+    img
+      width: 180px
+      margin-bottom: 30px
+
+    button
+      border-radius: 5px
+      border: none
+      width: 180px
+      padding: 8px
+      background-color: #31C28D
+      font-size: 14px
+
+      &:hover
+        background-color: #71eec0
+        transition: 0.3s
+
+  .card-product-details
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+  
+.container-categories
+  min-width: 300px
+  background-color: #fff
+  padding: 20px
+  margin-left: 20px
+  border-radius: 5px
+  
+
+  p
+    font-size: 24px
+    text-transform: uppercase
+    font-weight: bold
+    margin-bottom: 10px
+
+  hr
+    border-color: #31C28D
+    margin-bottom: 10px
+
+
+  .btn-categories
+    border: none
+    background-color: #fff
+    cursor: pointer
+    font-size: 16px
+    padding: 5px
+
+    &:hover
+      color: #31C28D
+      font-weight: bold
+      transition: 0.3s

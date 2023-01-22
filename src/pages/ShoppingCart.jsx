@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Header from '../components/Header';
 import ProductsCard from '../components/ProductsCard';
 
 class ShoppingCart extends Component {
@@ -72,6 +73,7 @@ class ShoppingCart extends Component {
     const { itemsLS } = this.state;
     return (
       <div>
+        <Header />
         {!itemsLS
           ? <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
           : (itemsLS.map((product, index) => (

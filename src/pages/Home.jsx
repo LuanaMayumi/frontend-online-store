@@ -4,7 +4,6 @@ import AnyProduct from '../components/AnyProduct';
 import Header from '../components/Header';
 import Loading from '../components/Loading';
 import ProductsCard from '../components/ProductsCard';
-import Search from '../components/Search';
 import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 // import addProductsLocalStorage from '../services/addLocalStorage';
 
@@ -129,58 +128,63 @@ class Home extends Component {
     const { isLoading, categories, products } = this.state;
     return (
       <div>
-        <Header />
-        <Search
+        <Header
           handleChange={ this.handleChange }
           onClickButton={ this.onClickButton }
         />
-        {isLoading ? <Loading /> : (
-          <div>
-            {categories.map((categorie) => (
-              <li
-                key={ categorie.id }
-              >
-                <button
-                  data-testid="category"
-                  type="button"
-                  onClick={ this.resultOfCategory }
-                  id={ categorie.id }
+        <div className="container-main">
+          {isLoading ? <Loading /> : (
+            <div className="container-categories">
+              <p>Categorias</p>
+              <hr />
+              {categories.map((categorie) => (
+                <li
+                  key={ categorie.id }
                 >
-                  {categorie.name}
-                </button>
-              </li>))}
-          </div>
-        )}
-        {!products ? <AnyProduct /> : (
-          <div>
-            {products.map((product) => (
-              <div
-                key={ product.id }
-              >
-                <Link
-                  to={ `/detalhesProduto/${product.id}` }
+                  <button
+                    className="btn-categories"
+                    data-testid="category"
+                    type="button"
+                    onClick={ this.resultOfCategory }
+                    id={ categorie.id }
+                  >
+                    {categorie.name}
+                  </button>
+                </li>))}
+            </div>
+          )}
+          {!products ? <AnyProduct /> : (
+            <div className="container-products">
+              {products.map((product) => (
+                <div
                   key={ product.id }
-                  data-testid="product-detail-link"
+                  className="card-product"
                 >
-                  <ProductsCard
+                  <Link
+                    to={ `/detalhesProduto/${product.id}` }
                     key={ product.id }
-                    title={ product.title }
-                    price={ product.price }
-                    thumbnail={ product.thumbnail }
-                  />
-                </Link>
-                <button
-                  type="button"
-                  data-testid="product-add-to-cart"
-                  onClick={ () => this.addProductShoppingCart(product) }
-                  id={ product.id }
-                >
-                  Eu quero
-                </button>
-              </div>
-            ))}
-          </div>
-        )}
+                    data-testid="product-detail-link"
+                  >
+                    <ProductsCard
+                      key={ product.id }
+                      title={ product.title }
+                      price={ product.price }
+                      thumbnail={ product.thumbnail }
+                    />
+                  </Link>
+                  <button
+                    type="button"
+                    data-testid="product-add-to-cart"
+                    onClick={ () => this.addProductShoppingCart(product) }
+                    id={ product.id }
+                  >
+                    Eu quero
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
     );
   }

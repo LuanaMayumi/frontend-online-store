@@ -6,20 +6,23 @@ class ProductsCard extends Component {
     const { price, title, thumbnail } = this.props;
     return (
       <div
+        className="card-product-details"
         data-testid="product"
       >
-        <p
-          data-testid="shopping-cart-product-name"
-        >
-          {title}
-        </p>
-        <p>
-          {price}
-        </p>
         <img
           src={ thumbnail }
           alt={ title }
         />
+        <p
+          className="card-product-name"
+          data-testid="shopping-cart-product-name"
+        >
+          {title}
+        </p>
+        <p className="card-product-price">
+          <span className="cifrao">R$</span>
+          { price }
+        </p>
       </div>
     );
   }
