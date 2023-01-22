@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../styles/Cart.sass';
 import Header from '../components/Header';
 import ProductsCard from '../components/ProductsCard';
 
@@ -74,43 +75,52 @@ class ShoppingCart extends Component {
     return (
       <div>
         <Header />
-        {!itemsLS
-          ? <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
-          : (itemsLS.map((product, index) => (
-            <div
-              key={ `${index}${product.id}` }
-            >
-              <ProductsCard
-                title={ product.title }
-                price={ product.price }
-                thumbnail={ product.thumbnail }
-              />
-              <button
-                type="button"
-                data-testid="product-increase-quantity"
-                onClick={ () => this.increase(product) }
-              >
-                +
-              </button>
-              <p data-testid="shopping-cart-product-quantity">
-                {product.quantity}
-              </p>
-              <button
-                type="button"
-                data-testid="product-decrease-quantity"
-                onClick={ () => this.decrease(product) }
-              >
-                -
-              </button>
-              <button
-                type="button"
-                data-testid="remove-product"
-                onClick={ () => this.filterSpecificProduct(product.id) }
-              >
-                Excluir
-              </button>
-            </div>
-          )))}
+        <div className="container-cart">
+          <h2>Carrinho de Compras</h2>
+          <div className="container-products-cart">
+            {!itemsLS
+              ? <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
+              : (itemsLS.map((product, index) => (
+                <div
+                  key={ `${index}${product.id}` }
+                >
+                  <hr />
+                  <div className="item-cart">
+                    <button
+                      type="button"
+                      data-testid="remove-product"
+                      onClick={ () => this.filterSpecificProduct(product.id) }
+                    >
+                      Excluir
+                    </button>
+                    <ProductsCard
+                      title={ product.title }
+                      price={ product.price }
+                      thumbnail={ product.thumbnail }
+                    />
+                    <button
+                      type="button"
+                      data-testid="product-increase-quantity"
+                      onClick={ () => this.increase(product) }
+                    >
+                      +
+                    </button>
+                    <p data-testid="shopping-cart-product-quantity">
+                      {product.quantity}
+                    </p>
+                    <button
+                      type="button"
+                      data-testid="product-decrease-quantity"
+                      onClick={ () => this.decrease(product) }
+                    >
+                      -
+                    </button>
+
+                  </div>
+                </div>
+              )))}
+          </div>
+        </div>
       </div>
     );
   }
