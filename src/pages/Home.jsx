@@ -16,7 +16,6 @@ class Home extends Component {
     search: '',
     selectedProducts: [],
   };
-  // Teste
 
   componentDidMount() {
     this.categoriesList();
