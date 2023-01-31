@@ -16,7 +16,7 @@ class Search extends Component {
             data-testid="query-input"
             onChange={ handleChange }
           />
-          Digite algum termo de pesquisa ou escolha uma categoria.
+          {/* Digite algum termo de pesquisa ou escolha uma categoria. */}
         </label>
         <button
           type="submit"

@@ -1,0 +1,149 @@
+* 
+  list-style: none
+  text-decoration: none
+  // box-sizing: border-box
+
+body
+  background-color: #eeeeee
+
+a, a:visited
+  color: inherit
+
+.container-header
+  display: flex
+  height: 100px
+  justify-content: space-between
+  margin-bottom: 30px
+  align-items: center
+  background-color: #000000
+  padding: 0 30px
+
+  img
+    width: 40px
+  
+  .logo
+    width: 200px
+
+  .search-container
+    display: flex
+    gap: 5px
+
+    input
+      border-radius: 5px
+      border: none
+      width: 200px
+      height: 30px
+      padding: 5px 10px
+
+
+    button
+      border-radius: 5px
+      border: none
+      padding: 10px
+      background-color: #31C28D
+      font-size: 14px
+      color: #fff
+
+      &:hover
+        background-color: #71eec0
+        transition: 0.3s
+
+.container-main
+  display: flex
+  gap: 20px
+
+.container-products
+  display: flex
+  flex-wrap: wrap
+  gap: 20px
+  justify-content: space-evenly
+
+  .card-product
+    width: 260px
+    height: 380px
+    padding: 30px
+    border-radius: 5px
+    background-color: #fff
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: space-between
+    border: none
+
+    &:hover
+      width: 280px
+      height: 400px
+      transition: 0.2s
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15)
+
+    .card-product-price
+      font-size: 26px
+      font-weight: bold
+
+      .cifrao
+        font-size: 16px
+        margin-right: 6px
+        color: #a09f9f
+
+    .card-product-name
+      margin: 10px
+      font-weight: bold
+      font-size: 16px
+      text-align: center
+      margin-bottom: 10px
+      height: 60px
+      // color: #8f4abd
+
+    img
+      width: 180px
+      margin-bottom: 30px
+
+    button
+      border-radius: 5px
+      border: none
+      width: 180px
+      padding: 10px
+      background-color: #31C28D
+      font-size: 14px
+      color: #fff
+
+      &:hover
+        background-color: #71eec0
+        transition: 0.3s
+
+  .card-product-details
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+  
+.container-categories
+  min-width: 300px
+  background-color: #fff
+  padding: 20px
+  margin-left: 20px
+  border-radius: 5px
+  height: 1100px  
+
+  p
+    font-size: 24px
+    text-transform: uppercase
+    font-weight: bold
+    margin-bottom: 10px
+
+  hr
+    border-color: #31C28D
+    margin-bottom: 10px
+
+
+  .btn-categories
+    border: none
+    background-color: #fff
+    cursor: pointer
+    font-size: 16px
+    padding: 5px
+
+    &:hover
+      color: #31C28D
+      font-weight: bold
+      transition: 0.3s

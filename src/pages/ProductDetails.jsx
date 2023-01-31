@@ -2,8 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import { getProductById } from '../services/api';
+
+import '../styles/ProductDetails.sass';
+import Form from '../components/Form';
+
 import FormAvaliation from '../components/FormAvaliation';
 import AvaliationProduct from '../components/AvaliationProduct';
+
 
 class ProductDetails extends Component {
   state = {
@@ -110,25 +115,59 @@ class ProductDetails extends Component {
     return (
       <div
         data-testid="product"
+        className="page-product-details"
       >
-        <h1>Detalhes do produto</h1>
-        <p
-          data-testid="product-detail-name"
-        >
-          {infoProduct.title}
-        </p>
-        <p
-          data-testid="product-detail-price"
-        >
-          { infoProduct.price }
-        </p>
-        <p>
-          { infoProduct.condition }
-        </p>
-        <img
-          data-testid="product-detail-image"
-          src={ infoProduct.thumbnail }
-          alt={ infoProduct.title }
+        <Header
+          handleChange={ this.handleChange }
+          onClickButton={ this.onClickButton }
+        />
+        <div>
+          {/* <div className="product-image"> */}
+          {
+            infoProduct.length !== 0 && (
+              <div className="container-image-product">
+                <p
+                  data-testid="product-detail-name"
+                >
+                  {infoProduct.title}
+                </p>
+                <img
+                  data-testid="product-detail-image"
+                  src={ infoProduct.pictures[0].url }
+                  alt={ infoProduct.title }
+                />
+                {/* </div> */}
+                {/* <div className="product-details"> */}
+                <p
+                  data-testid="product-detail-price"
+                  className="card-product-price"
+                >
+                  <span className="cifrao">R$</span>
+                  { infoProduct.price.toFixed(2).replace('.', ',') }
+                </p>
+                {/* <p>
+                  Condição do Produto:
+                  <br />
+                  { infoProduct.condition }
+                </p> */}
+                <button
+                  type="button"
+                  data-testid="product-detail-add-to-cart"
+                  onClick={ () => this.addProductToCart(infoProduct) }
+                  id={ infoProduct.id }
+                >
+                  Adicionar ao Carrinho
+                </button>
+              </div>
+            )
+          }
+        </div>
+        {/* </div> */}
+        {/* <Header data-testid="shopping-cart-button" /> */}
+        <Form
+          message={ message }
+          onClickButton={ this.onClickButton }
+          handleChange={ this.handleChange }
         />
         <button
           type="button"
