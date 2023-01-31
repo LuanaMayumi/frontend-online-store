@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import '../styles/Cart.sass';
 import Header from '../components/Header';
@@ -72,6 +73,7 @@ class ShoppingCart extends Component {
 
   render() {
     const { itemsLS } = this.state;
+    const { history } = this.props;
     return (
       <div>
         <Header />
@@ -125,5 +127,11 @@ class ShoppingCart extends Component {
     );
   }
 }
+
+ShoppingCart.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
+};
 
 export default ShoppingCart;

@@ -33,7 +33,7 @@ class Home extends Component {
       this.setState({
         selectedProducts: itemsArray, // items que estão no LS
       });
-      console.log(itemsArray);
+      // console.log(itemsArray);
     }
   };
 
@@ -67,7 +67,7 @@ class Home extends Component {
       const response = await getProductsFromCategoryAndQuery(undefined, search);
       // console.log(response);
       if (response.results.length < 1) {
-        console.log('teste');
+        // console.log('teste');
         this.setState({
           isLoading: false,
           products: false,
