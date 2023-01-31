@@ -1,12 +1,25 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import { Rating } from 'react-simple-star-rating';
+import '../styles/FormAvaliation.sass';
 
 class FormAvaliation extends Component {
+  handleRating = (rating) => {
+    const { handleChange } = this.props;
+    const element = {
+      target: {
+        value: rating,
+        name: 'rate',
+      },
+    };
+    handleChange(element);
+  };
+
   render() {
     const {
       message,
-      handleChange,
       onClickButton,
+      handleChange,
       emailUser,
       description } = this.props;
     return (
@@ -15,53 +28,20 @@ class FormAvaliation extends Component {
       >
         <h1>Avaliações</h1>
         <form>
-          <label
-            htmlFor="email"
-          >
-            <input
-              name="emailUser"
-              id="email"
-              data-testid="product-detail-email"
-              onChange={ handleChange }
-              value={ emailUser }
-            />
-            E-mail
-          </label>
           <input
-            type="radio"
-            data-testid="1-rating"
-            name="rate"
-            value="1"
+            name="emailUser"
+            id="email"
+            data-testid="product-detail-email"
+            className="input-email"
             onChange={ handleChange }
+            value={ emailUser }
+            placeholder="Email"
           />
-          <input
-            type="radio"
-            data-testid="2-rating"
-            name="rate"
-            value="2"
-            onChange={ handleChange }
+          <Rating
+            onClick={ this.handleRating }
+            size={ 30 }
           />
-          <input
-            type="radio"
-            data-testid="3-rating"
-            name="rate"
-            value="3"
-            onChange={ handleChange }
-          />
-          <input
-            type="radio"
-            data-testid="4-rating"
-            name="rate"
-            value="4"
-            onChange={ handleChange }
-          />
-          <input
-            type="radio"
-            data-testid="5-rating"
-            name="rate"
-            value="5"
-            onChange={ handleChange }
-          />
+
           <textarea
             data-testid="product-detail-evaluation"
             placeholder="Escreva algo sobre o produto"

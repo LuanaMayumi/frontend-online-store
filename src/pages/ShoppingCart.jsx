@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import '../styles/Cart.sass';
 import Header from '../components/Header';
 import ProductsCard from '../components/ProductsCard';
