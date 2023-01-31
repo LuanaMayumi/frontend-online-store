@@ -2,13 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import { getProductById } from '../services/api';
-
 import '../styles/ProductDetails.sass';
-import Form from '../components/Form';
 
 import FormAvaliation from '../components/FormAvaliation';
 import AvaliationProduct from '../components/AvaliationProduct';
-
 
 class ProductDetails extends Component {
   state = {
@@ -67,10 +64,7 @@ class ProductDetails extends Component {
     // Adicionar chave quantidade no product
     // Verificar se o produto já existe no Local Storage, se existir aumentar a quantity (quantity + 1), se não existir (quantity: 1)
     this.setState((prevState) => ({
-      productsLocalStorage: [
-        ...prevState.productsLocalStorage,
-        { ...product, quantity: 1 },
-      ],
+      productsLocalStorage: [...prevState.productsLocalStorage, product],
     }), () => {
       const { productsLocalStorage } = this.state;
       localStorage
@@ -164,20 +158,6 @@ class ProductDetails extends Component {
         </div>
         {/* </div> */}
         {/* <Header data-testid="shopping-cart-button" /> */}
-        <Form
-          message={ message }
-          onClickButton={ this.onClickButton }
-          handleChange={ this.handleChange }
-        />
-        <button
-          type="button"
-          data-testid="product-detail-add-to-cart"
-          onClick={ () => this.addProductToCart(infoProduct) }
-          id={ infoProduct.id }
-        >
-          Eu quero
-        </button>
-        <Header data-testid="shopping-cart-button" />
         <FormAvaliation
           handleChange={ this.handleChange }
           onClickButton={ this.onClickButton }

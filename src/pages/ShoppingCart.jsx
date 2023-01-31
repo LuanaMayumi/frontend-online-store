@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import '../styles/Cart.sass';
 import Header from '../components/Header';
@@ -86,41 +85,49 @@ class ShoppingCart extends Component {
                 <div
                   key={ `${index}${product.id}` }
                 >
-                  <hr />
-                  <div className="item-cart">
-                    <button
-                      type="button"
-                      data-testid="remove-product"
-                      onClick={ () => this.filterSpecificProduct(product.id) }
-                    >
-                      Excluir
-                    </button>
-                    <ProductsCard
-                      title={ product.title }
-                      price={ product.price }
-                      thumbnail={ product.thumbnail }
-                    />
-                    <button
-                      type="button"
-                      data-testid="product-increase-quantity"
-                      onClick={ () => this.increase(product) }
-                    >
-                      +
-                    </button>
-                    <p data-testid="shopping-cart-product-quantity">
-                      {product.quantity}
-                    </p>
-                    <button
-                      type="button"
-                      data-testid="product-decrease-quantity"
-                      onClick={ () => this.decrease(product) }
-                    >
-                      -
-                    </button>
-
-                  </div>
+                  <ProductsCard
+                    title={ product.title }
+                    price={ product.price }
+                    thumbnail={ product.thumbnail }
+                  />
+                  <button
+                    type="button"
+                    data-testid="product-increase-quantity"
+                    onClick={ () => this.increase(product) }
+                  >
+                    +
+                  </button>
+                  <p data-testid="shopping-cart-product-quantity">
+                    {product.quantity}
+                  </p>
+                  <button
+                    type="button"
+                    data-testid="product-decrease-quantity"
+                    onClick={ () => this.decrease(product) }
+                  >
+                    -
+                  </button>
+                  <button
+                    type="button"
+                    data-testid="remove-product"
+                    onClick={ () => this.filterSpecificProduct(product.id) }
+                  >
+                    Excluir
+                  </button>
                 </div>
               )))}
+            <div className="button-finalizar-compra">
+              <button
+                type="button"
+                data-testid="checkout-products"
+                onClick={ () => history.push({
+                  pathname: '/checkout',
+                  state: { itemsShoppingCart: itemsLS },
+                }) }
+              >
+                Finalizar Compra
+              </button>
+            </div>
           </div>
         </div>
       </div>
