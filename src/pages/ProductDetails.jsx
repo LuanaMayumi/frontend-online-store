@@ -17,10 +17,12 @@ class ProductDetails extends Component {
     rate: '',
     message: false,
     savedAvaliations: [],
+    itemsOnCart: 0,
   };
 
   // Ler o Local Storage com o getItem, depois setar no productsLocalStorage
   componentDidMount() {
+    this.getFromLS2();
     const { match: { params: { id } } } = this.props;
     const items = localStorage.getItem('ID_PRODUTO');
     const itemsArray = JSON.parse(items);
@@ -50,6 +52,15 @@ class ProductDetails extends Component {
       });
     }
   }
+
+  getFromLS2 = () => {
+    const baseProducts = localStorage.getItem('ID_PRODUTO');
+    const products = JSON.parse(baseProducts);
+    const itemsOnCart = products
+      .map((item) => item.quantity)
+      .reduce((acc, curr) => (acc + curr), 0);
+    this.setState({ itemsOnCart });
+  };
 
   getInfoProduct = async () => {
     const { id } = this.state;
@@ -87,6 +98,7 @@ class ProductDetails extends Component {
           .setItem('ID_PRODUTO', JSON.stringify(newItems));
       });
     }
+    this.getFromLS2();
   };
 
   // Requisito 11
@@ -122,7 +134,7 @@ class ProductDetails extends Component {
   };
 
   render() {
-    const { infoProduct, message } = this.state;
+    const { infoProduct, message, itemsOnCart } = this.state;
     return (
       <div
         data-testid="product"
@@ -131,6 +143,7 @@ class ProductDetails extends Component {
         <Header
           handleChange={ this.handleChange }
           onClickButton={ this.onClickButton }
+          itemsOnCart={ itemsOnCart }
         />
         <div>
           {/* <div className="product-image"> */}

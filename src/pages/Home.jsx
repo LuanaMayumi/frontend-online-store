@@ -15,12 +15,23 @@ class Home extends Component {
     products: [],
     search: '',
     selectedProducts: [],
+    itemsOnCart: 0,
   };
 
   componentDidMount() {
     this.categoriesList();
     this.getFromLS();
+    this.getFromLS2();
   }
+
+  getFromLS2 = () => {
+    const baseProducts = localStorage.getItem('ID_PRODUTO');
+    const products = JSON.parse(baseProducts);
+    const itemsOnCart = products
+      .map((item) => item.quantity)
+      .reduce((acc, curr) => (acc + curr), 0);
+    this.setState({ itemsOnCart });
+  };
 
   getFromLS = () => {
     const items = localStorage.getItem('ID_PRODUTO');
@@ -123,15 +134,17 @@ class Home extends Component {
           .setItem('ID_PRODUTO', JSON.stringify(selectedProducts)); // salva no local storage a lista de produtos que foi add no carrinho
       });
     }
+    this.getFromLS2();
   };
 
   render() {
-    const { isLoading, categories, products } = this.state;
+    const { isLoading, categories, products, itemsOnCart } = this.state;
     return (
       <div>
         <Header
           handleChange={ this.handleChange }
           onClickButton={ this.onClickButton }
+          itemsOnCart={ itemsOnCart }
         />
         <div className="container-main">
           {isLoading ? <Loading /> : (

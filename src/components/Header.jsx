@@ -7,7 +7,7 @@ import logo from '../assets/logo.svg';
 
 class Header extends Component {
   render() {
-    const { handleChange, onClickButton } = this.props;
+    const { handleChange, onClickButton, itemsOnCart } = this.props;
     return (
       <div className="container-header">
         <div className="logo-div">
@@ -27,15 +27,17 @@ class Header extends Component {
             data-testid="shopping-cart-button"
           >
             <img src={ cart } alt="Carrinho de compras" />
+            <p>{ itemsOnCart }</p>
           </Link>
         </div>
       </div>
     );
   }
 }
-export default Header;
 
 Header.propTypes = {
-  onClickButton: PropTypes.func.isRequired,
-  handleChange: PropTypes.func.isRequired,
+  handleChange: PropTypes.func,
+  itemsOnCart: PropTypes.any,
+  onClickButton: PropTypes.any
 };
+export default Header;

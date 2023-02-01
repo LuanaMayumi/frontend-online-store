@@ -33,11 +33,11 @@ class ShoppingCart extends Component {
     this.setState({
       itemsLS: result, // seta o estado com o ítem ja excluído
     }, () => {
-      this.totalOnCart();
       const { itemsLS: newItems } = this.state;
       // renomeia a variável (nao o estado)
       localStorage
         .setItem('ID_PRODUTO', JSON.stringify(newItems)); // salva no LS
+      this.totalOnCart();
     });
   };
 
@@ -80,18 +80,24 @@ class ShoppingCart extends Component {
     const total = cartItems
       .map((product) => (product.price * product.quantity))
       .reduce((acc, curr) => (acc + curr), 0);
+    const baseProducts = localStorage.getItem('ID_PRODUTO');
+    const products = JSON.parse(baseProducts);
+    const itemsOnCart = products
+      .map((item) => item.quantity)
+      .reduce((acc, curr) => (acc + curr), 0);
     this.setState({
       totalCart: total.toFixed(2),
+      itemsOnCart,
     });
   };
 
   render() {
-    const { itemsLS, totalCart } = this.state;
+    const { itemsLS, totalCart, itemsOnCart } = this.state;
     const { history } = this.props;
     const stringLength = 40;
     return (
       <div>
-        <Header />
+        <Header itemsOnCart={ itemsOnCart } />
         <div className="container-cart">
           <div className="container-products-cart">
             <h2>Carrinho de Compras</h2>
