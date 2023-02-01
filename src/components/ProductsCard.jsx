@@ -7,8 +7,9 @@ class ProductsCard extends Component {
     const stringLength = 40;
     return (
       <div
-        className="card-product-details"
+        className="card-product-details item-cart"
         data-testid="product"
+
       >
         <img
           src={ thumbnail }
@@ -20,10 +21,15 @@ class ProductsCard extends Component {
         >
           {`${title.substr(0, stringLength)}...`}
         </p>
-        <p className="card-product-price">
-          <span className="cifrao">R$</span>
-          { price.toFixed(2).replace('.', ',') }
-        </p>
+        {
+          price
+          && (
+            <p className="card-product-price">
+              <span className="cifrao">R$</span>
+              { price.toFixed(2).replace('.', ',') }
+            </p>
+          )
+        }
       </div>
     );
   }

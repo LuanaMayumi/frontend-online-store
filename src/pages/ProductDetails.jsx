@@ -63,13 +63,30 @@ class ProductDetails extends Component {
   addProductToCart = (product) => {
     // Adicionar chave quantidade no product
     // Verificar se o produto já existe no Local Storage, se existir aumentar a quantity (quantity + 1), se não existir (quantity: 1)
-    this.setState((prevState) => ({
-      productsLocalStorage: [...prevState.productsLocalStorage, product],
-    }), () => {
-      const { productsLocalStorage } = this.state;
+    const { productsLocalStorage } = this.state;
+
+    if (productsLocalStorage.some((item) => item.id === product.id)) {
+      const newItems = productsLocalStorage.map((item) => {
+        if (item.id === product.id) {
+          item.quantity += 1;
+        }
+        return item;
+      });
       localStorage
-        .setItem('ID_PRODUTO', JSON.stringify(productsLocalStorage));
-    });
+        .setItem('ID_PRODUTO', JSON.stringify(newItems));
+      this.setState({
+        productsLocalStorage: newItems,
+      });
+    } else {
+      this.setState((prevState) => ({
+        productsLocalStorage:
+        [...prevState.productsLocalStorage, { ...product, quantity: 1 }],
+      }), () => {
+        const { productsLocalStorage: newItems } = this.state;
+        localStorage
+          .setItem('ID_PRODUTO', JSON.stringify(newItems));
+      });
+    }
   };
 
   // Requisito 11

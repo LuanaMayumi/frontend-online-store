@@ -1,23 +1,123 @@
 .container-cart
   display: flex
-  flex-direction: column
-  background-color: #fff
-  width: 50%
-  margin-left: 20px
-  padding: 20px
-  border-radius: 5px
-  align-items: center
+  width: 100%
+  justify-content: space-between
   gap: 20px
 
   .container-products-cart
-    width: 100%
+    flex: 1
+    margin-left: 20px
+    padding: 20px
+    border-radius: 5px
+    background-color: #fff
     display: flex
     flex-direction: column
-    
-    hr
-      margin: 20px 0
+
+    h2
+      width: 100%
+      text-align: center
+      margin-bottom: 30px
 
     .item-cart
       display: flex
+      align-items: center
+      justify-content: flex-start
+      padding: 10px
+      
+      .exclude-btn
+        img
+          width: 15px
 
+      .product-img
+        margin-left: 30px
+        border-radius: 5px
+        width: 80px
 
+      .card-product-name
+        margin-left: 30px
+        font-size: 18px
+        font-weight: 600
+        width: 250px
+        text-align: center
+        color: #363636
+
+      .product-increase, .product-decrease
+        display: flex
+        justify-content: center
+        align-items: center
+        width: 50px
+        height: 50px
+
+        img
+          width: 15px
+
+      .product-quantity
+        background-color: #a0a0a0
+        display: flex
+        justify-content: center
+        align-items: center
+        width: 40px
+        height: 40px
+        color: #fff
+        // padding: 15px 20px
+        border-radius: 200px
+        font-size: 14px
+        font-weight: bold
+
+      .card-product-price
+        font-size: 20px
+        font-weight: bold
+        color: #363636
+        
+        span
+          margin-right: 5px
+          font-size: 12px
+          font-weight: bold
+          color: gray
+
+    button
+      border: none
+      background-color: #fff
+      cursor: pointer
+
+      &:active
+        background-color: #47c798
+
+  .total-cart
+    flex: 1
+    margin-right: 20px
+    position: relative
+    padding: 20px
+    border-radius: 5px
+    background-color: #fff
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+
+    p
+      font-size: 24px
+      font-weight: bold
+      margin-bottom: 20px
+
+      span
+        font-size: 18px
+        margin-right: 5px
+
+    button
+      border-radius: 5px
+      border: none
+      width: 300px
+      padding: 8px
+      background-color: #31C28D
+      font-size: 16px
+      color: white
+      margin-bottom: 20px
+
+      &:hover
+        background-color: #71eec0
+        transition: 0.3s
+        cursor: pointer
+        
+      &:active
+        background-color: #47c798

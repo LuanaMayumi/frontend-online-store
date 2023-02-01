@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import '../styles/Cart.sass';
 import Header from '../components/Header';
-import ProductsCard from '../components/ProductsCard';
+import exclude from '../assets/exclude.svg';
+import decrease from '../assets/decrease.svg';
+import increase from '../assets/increase.svg';
 
 class ShoppingCart extends Component {
   state = {
     itemsLS: [],
+    totalCart: 0,
   };
 
   componentDidMount() {
@@ -18,7 +21,7 @@ class ShoppingCart extends Component {
     const itemsArray = JSON.parse(items);
     this.setState({
       itemsLS: itemsArray, // items que estão no LS
-    });
+    }, this.totalOnCart);
   };
 
   // Requisito 10
@@ -30,6 +33,7 @@ class ShoppingCart extends Component {
     this.setState({
       itemsLS: result, // seta o estado com o ítem ja excluído
     }, () => {
+      this.totalOnCart();
       const { itemsLS: newItems } = this.state;
       // renomeia a variável (nao o estado)
       localStorage
@@ -52,7 +56,7 @@ class ShoppingCart extends Component {
       .setItem('ID_PRODUTO', JSON.stringify(newItemsArry));
     this.setState({
       itemsLS: newItemsArry,
-    });
+    }, this.totalOnCart);
   };
 
   decrease = (productCart) => {
@@ -68,67 +72,97 @@ class ShoppingCart extends Component {
       .setItem('ID_PRODUTO', JSON.stringify(newItems));
     this.setState({
       itemsLS: newItems,
+    }, this.totalOnCart);
+  };
+
+  totalOnCart = () => {
+    const { itemsLS: cartItems } = this.state;
+    const total = cartItems
+      .map((product) => (product.price * product.quantity))
+      .reduce((acc, curr) => (acc + curr), 0);
+    this.setState({
+      totalCart: total.toFixed(2),
     });
   };
 
   render() {
-    const { itemsLS } = this.state;
+    const { itemsLS, totalCart } = this.state;
     const { history } = this.props;
+    const stringLength = 40;
     return (
       <div>
         <Header />
         <div className="container-cart">
-          <h2>Carrinho de Compras</h2>
           <div className="container-products-cart">
+            <h2>Carrinho de Compras</h2>
             {!itemsLS
               ? <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
               : (itemsLS.map((product, index) => (
-                <div
-                  key={ `${index}${product.id}` }
-                >
-                  <ProductsCard
-                    title={ product.title }
-                    price={ product.price }
-                    thumbnail={ product.thumbnail }
-                  />
-                  <button
-                    type="button"
-                    data-testid="product-increase-quantity"
-                    onClick={ () => this.increase(product) }
+                <div key={ `${index}${product.id}` }>
+                  <hr />
+                  <div
+                    className="item-cart"
                   >
-                    +
-                  </button>
-                  <p data-testid="shopping-cart-product-quantity">
-                    {product.quantity}
-                  </p>
-                  <button
-                    type="button"
-                    data-testid="product-decrease-quantity"
-                    onClick={ () => this.decrease(product) }
-                  >
-                    -
-                  </button>
-                  <button
-                    type="button"
-                    data-testid="remove-product"
-                    onClick={ () => this.filterSpecificProduct(product.id) }
-                  >
-                    Excluir
-                  </button>
+                    <button
+                      type="button"
+                      className="exclude-btn"
+                      data-testid="remove-product"
+                      onClick={ () => this.filterSpecificProduct(product.id) }
+                    >
+                      <img src={ exclude } alt="Botão excluir" />
+                    </button>
+                    <img
+                      className="product-img"
+                      src={ product.thumbnail }
+                      alt={ product.title }
+                    />
+                    <p
+                      className="card-product-name"
+                      data-testid="shopping-cart-product-name"
+                    >
+                      {`${product.title.substr(0, stringLength)}...`}
+                    </p>
+                    <button
+                      type="button"
+                      className="product-increase"
+                      onClick={ () => this.increase(product) }
+                    >
+                      <img src={ increase } alt="Botão increase" />
+                    </button>
+                    <p className="product-quantity">
+                      {product.quantity}
+                    </p>
+                    <button
+                      type="button"
+                      className="product-decrease"
+                      onClick={ () => this.decrease(product) }
+                    >
+                      <img src={ decrease } alt="Botão decrease" />
+                    </button>
+                    <p className="card-product-price">
+                      <span className="cifrao">R$</span>
+                      { (product.price * product.quantity).toFixed(2).replace('.', ',') }
+                    </p>
+                  </div>
                 </div>
               )))}
-            <div className="button-finalizar-compra">
-              <button
-                type="button"
-                data-testid="checkout-products"
-                onClick={ () => history.push({
-                  pathname: '/checkout',
-                  state: { itemsShoppingCart: itemsLS },
-                }) }
-              >
-                Finalizar Compra
-              </button>
-            </div>
+          </div>
+          <div className="total-cart">
+            <p>Valor total da compra:</p>
+            <p>
+              <span>R$</span>
+              {String(totalCart).replace('.', ',')}
+            </p>
+            <button
+              type="button"
+              data-testid="checkout-products"
+              onClick={ () => history.push({
+                pathname: '/checkout',
+                state: { itemsShoppingCart: itemsLS },
+              }) }
+            >
+              Finalizar Compra
+            </button>
           </div>
         </div>
       </div>
