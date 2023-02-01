@@ -16,38 +16,55 @@ a, a:visited
   margin-bottom: 30px
   align-items: center
   background-color: #000000
-  padding: 0 30px
+  padding: 0 50px
 
-  img
-    width: 40px
-  
-  .logo
-    width: 200px
-
-  .search-container
+  .logo-div
     display: flex
-    gap: 5px
+    justify-content: flex-start
+    width: 33%
 
-    input
-      border-radius: 5px
-      border: none
-      width: 200px
-      height: 30px
-      padding: 5px 10px
+    .logo
+      width: 180px
+
+  .cart-link
+    display: flex
+    justify-content: flex-end
+    width: 33%
+
+    img
+      width: 40px
 
 
-    button
-      border-radius: 5px
-      border: none
-      padding: 10px
-      background-color: #31C28D
-      font-size: 14px
-      color: #fff
+  .search-div
+    width: 33%
+    display: flex
+    justify-content: center
 
-      &:hover
-        background-color: #71eec0
-        transition: 0.3s
-        cursor: pointer
+    .search-container
+      display: flex
+      justify-content: center
+      gap: 5px
+
+      input
+        border-radius: 3px
+        border: none
+        width: 400px
+        height: 30px
+        padding: 5px 10px
+
+
+      button
+        border-radius: 3px
+        border: none
+        padding: 0 20px
+        background-color: #31C28D
+        font-size: 14px
+        color: #fff
+
+        &:hover
+          background-color: #71eec0
+          transition: 0.3s
+          cursor: pointer
 
 
 .container-main
