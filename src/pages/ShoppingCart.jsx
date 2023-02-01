@@ -158,7 +158,7 @@ class ShoppingCart extends Component {
               data-testid="checkout-products"
               onClick={ () => history.push({
                 pathname: '/checkout',
-                state: { itemsShoppingCart: itemsLS },
+                state: { itemsShoppingCart: itemsLS, totalCart },
               }) }
             >
               Finalizar Compra
