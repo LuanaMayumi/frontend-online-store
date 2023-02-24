@@ -89,8 +89,9 @@ export default class FormCheckout extends Component {
             onChange={ this.handleChange }
           />
           <div className="radio-inputs">
-            <label htmlFor="payment" className="radio-input">
+            <label htmlFor="payment-boleto" className="radio-input">
               <input
+                id="payment-boleto"
                 type="radio"
                 name="payment"
                 data-testid="ticket-payment"
@@ -98,8 +99,9 @@ export default class FormCheckout extends Component {
               />
               Boleto
             </label>
-            <label htmlFor="payment" className="radio-input">
+            <label htmlFor="payment-visa" className="radio-input">
               <input
+                id="payment-visa"
                 type="radio"
                 name="payment"
                 data-testid="ticket-payment"
@@ -107,8 +109,9 @@ export default class FormCheckout extends Component {
               />
               Visa
             </label>
-            <label htmlFor="payment" className="radio-input">
+            <label htmlFor="payment-mastercard" className="radio-input">
               <input
+                id="payment-mastercard"
                 type="radio"
                 name="payment"
                 data-testid="ticket-payment"
@@ -116,8 +119,9 @@ export default class FormCheckout extends Component {
               />
               Mastecard
             </label>
-            <label htmlFor="payment" className="radio-input">
+            <label htmlFor="payment-elo" className="radio-input">
               <input
+                id="payment-elo"
                 type="radio"
                 name="payment"
                 data-testid="ticket-payment"

@@ -38,6 +38,6 @@ class Header extends Component {
 Header.propTypes = {
   handleChange: PropTypes.func,
   itemsOnCart: PropTypes.any,
-  onClickButton: PropTypes.any
-};
+  onClickButton: PropTypes.any,
+}.isRequired;
 export default Header;

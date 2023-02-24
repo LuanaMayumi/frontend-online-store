@@ -6,18 +6,12 @@ class Search extends Component {
     const { handleChange, onClickButton } = this.props;
     return (
       <div className="search-container">
-        <label
-          data-testid="home-initial-message"
-          htmlFor="search-label"
-        >
-          <input
-            type="text"
-            id="search-label"
-            data-testid="query-input"
-            onChange={ handleChange }
-          />
-          {/* Digite algum termo de pesquisa ou escolha uma categoria. */}
-        </label>
+        <input
+          type="text"
+          id="search-label"
+          data-testid="query-input"
+          onChange={ handleChange }
+        />
         <button
           type="submit"
           data-testid="query-button"

@@ -54,7 +54,7 @@ class ProductDetails extends Component {
   }
 
   getFromLS2 = () => {
-    const baseProducts = localStorage.getItem('ID_PRODUTO');
+    const baseProducts = localStorage.getItem('ID_PRODUTO') ?? '[]';
     const products = JSON.parse(baseProducts);
     const itemsOnCart = products
       .map((item) => item.quantity)
@@ -87,7 +87,7 @@ class ProductDetails extends Component {
         .setItem('ID_PRODUTO', JSON.stringify(newItems));
       this.setState({
         productsLocalStorage: newItems,
-      });
+      }, this.getFromLS2());
     } else {
       this.setState((prevState) => ({
         productsLocalStorage:
@@ -96,9 +96,9 @@ class ProductDetails extends Component {
         const { productsLocalStorage: newItems } = this.state;
         localStorage
           .setItem('ID_PRODUTO', JSON.stringify(newItems));
+        this.getFromLS2();
       });
     }
-    this.getFromLS2();
   };
 
   // Requisito 11
@@ -146,7 +146,7 @@ class ProductDetails extends Component {
           itemsOnCart={ itemsOnCart }
         />
         <div>
-          {/* <div className="product-image"> */}
+
           {
             infoProduct.length !== 0 && (
               <div className="container-image-product">
@@ -160,8 +160,7 @@ class ProductDetails extends Component {
                   src={ infoProduct.pictures[0].url }
                   alt={ infoProduct.title }
                 />
-                {/* </div> */}
-                {/* <div className="product-details"> */}
+
                 <p
                   data-testid="product-detail-price"
                   className="card-product-price"
@@ -169,11 +168,7 @@ class ProductDetails extends Component {
                   <span className="cifrao">R$</span>
                   { infoProduct.price.toFixed(2).replace('.', ',') }
                 </p>
-                {/* <p>
-                  Condição do Produto:
-                  <br />
-                  { infoProduct.condition }
-                </p> */}
+
                 <button
                   type="button"
                   data-testid="product-detail-add-to-cart"
@@ -186,8 +181,7 @@ class ProductDetails extends Component {
             )
           }
         </div>
-        {/* </div> */}
-        {/* <Header data-testid="shopping-cart-button" /> */}
+
         <FormAvaliation
           handleChange={ this.handleChange }
           onClickButton={ this.onClickButton }
