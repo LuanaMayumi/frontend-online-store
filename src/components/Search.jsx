@@ -7,6 +7,7 @@ class Search extends Component {
     return (
       <div className="search-container">
         <input
+          placeholder="Buscar produtos"
           type="text"
           id="search-label"
           data-testid="query-input"
